@@ -25,7 +25,7 @@ app.post('/demo', async(req,res)=>{
   _id: "testid",
   email: "test@example.com",
   name: "Test User",
-  imageUrl: ""
+  imageUrl: "jfkdjkf"
 });
 })
 

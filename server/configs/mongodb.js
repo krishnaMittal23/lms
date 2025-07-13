@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const connectDB = async()=>{
     mongoose.connection.on('connected', ()=> console.log('database connected'))
 
-    await mongoose.connect("mongodb+srv://krishna:krishna@webdevlearn.allo9vb.mongodb.net/lms")
+    await mongoose.connect(`${process.env.MONGODB_URI}/lms`)
 }
 
 export default connectDB;

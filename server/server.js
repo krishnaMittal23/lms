@@ -20,14 +20,7 @@ app.get('/', (req,res)=>{
 
 app.post('/clerk', express.json(), clerkWebhooks);
 
-app.post('/demo', async(req,res)=>{
-    await User.create({
-  _id: "testid",
-  email: "test@example.com",
-  name: "Test User",
-  imageUrl: "jfkdjkf"
-});
-})
+
 
 const PORT=process.env.port || 5000
 

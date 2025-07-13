@@ -4,8 +4,9 @@ import User from "../models/User.js";
 // API controller function to manage clerk user with database
 
 export const clerkWebhooks = async(req,res)=>{
+    console.log("Webhook endpoint called");
     try{
-        console.log("Webhook received:", req.body);
+        console.log("Webhook received:");
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
 
         await whook.verify(JSON.stringify(req.body), {
@@ -22,9 +23,10 @@ export const clerkWebhooks = async(req,res)=>{
                     _id: data.id,
                     email: data.email_addresses[0].email_address,
                     name: data.first_name + ' ' + data.last_name,
-                    imageUrl: data.imageUrl,
+                    imageUrl: data.image_url,
                 }
                 await User.create(userData);
+                
                 res.json({})
                 break;
             }
@@ -34,7 +36,7 @@ export const clerkWebhooks = async(req,res)=>{
                    
                     email: data.email_addresses[0].email_address,
                     name: data.first_name + ' ' + data.last_name,
-                    imageUrl: data.imageUrl,
+                    imageUrl: data.image_url,
                 }
                 await User.findByIdAndUpdate(data.id, userData);
                 res.json({})

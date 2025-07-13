@@ -18,8 +18,22 @@ app.get('/', (req,res)=>{
     res.send("api working")
 })
 
-app.post('/clerk', express.json(), clerkWebhooks);
+// app.get('/test', async (req,res)=>{
+//   const user = await User.create({
+//     _id: "123",
+//     name: "test user",
+//     email: "test@email.com",
+//     imageUrl: "test.jpg",
+//   })
+//   res.json(user)
+// })
 
+app.post('/test', express.json(), (req,res)=>{
+  console.log("Test route hit:", req.body);
+  res.send("ok");
+});
+
+app.post('/clerk', express.raw({ type: 'application/json' }), clerkWebhooks);
 
 
 const PORT=process.env.PORT || 5000

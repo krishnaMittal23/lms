@@ -10,14 +10,14 @@ const app=express();
 await connectDB();
 
 app.use(cors())
-app.use(express.json());
+// app.use(express.json());
 
 //ROUTES
 app.get('/', (req,res)=>{
     res.send("api working")
 })
 
-app.post('/clerk', clerkWebhooks);
+app.post('/clerk', express.json(), clerkWebhooks);
 
 const PORT=process.env.port || 5000
 

@@ -3,6 +3,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './configs/mongodb.js';
 import { clerkWebhooks } from './controllers/webhooks.js';
+import User from './models/User.js';
 
 const app=express();
 
@@ -18,6 +19,15 @@ app.get('/', (req,res)=>{
 })
 
 app.post('/clerk', express.json(), clerkWebhooks);
+
+app.post('/demo', async(req,res)=>{
+    await User.create({
+  _id: "testid",
+  email: "test@example.com",
+  name: "Test User",
+  imageUrl: ""
+});
+})
 
 const PORT=process.env.port || 5000
 
